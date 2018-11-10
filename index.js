@@ -14,4 +14,11 @@ if ((typeof name !== 'string') || !name) {
   throw new TypeError('climod-add-dep dependency version should be a string or ommited.');
 }
 
-packageJson().set('dependencies.' + name, target).save();
+let dependencyKey = 'dependencies';
+if (argv.dev) {
+  dependencyKey = 'devDependencies';
+} else if (argv.peer) {
+  dependencyKey = 'peerDependencies';
+}
+
+packageJson().set(dependencyKey + '.' + name, target).save();
