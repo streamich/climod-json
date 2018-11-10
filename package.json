@@ -1,5 +1,5 @@
 {
-  "name": "climod-add-dep",
+  "name": "climod-json",
   "version": "0.3.0",
   "bin": "index.js",
   "dependencies": {
