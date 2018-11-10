@@ -22,7 +22,7 @@ Options
     -k, --key         JSON key on which to perform operation.
     -s, --set         Value to set the key to.
     -u, --unset       To unset given key.
-    --json            To JSON.strigify console output.
+    --json            Treat input and output as JSON.
     -h, --help        Print this screen.
     -v, --version     Show version.
 `);
@@ -43,7 +43,13 @@ const {json} = require('mrm-core');
 const obj = json(file);
 
 if (argv.set || argv.s) {
-  obj.set(key, argv.set || argv.s).save();
+  let value = argv.set || argv.s;
+  if (argv.json) {
+    try {
+      value = JSON.parse(value);
+    } catch (error) {}
+  }
+  obj.set(key, value).save();
   process.exit(0);
 } else if (argv.u || argv.unset) {
   obj.unset(key).save();
