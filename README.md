@@ -1,17 +1,15 @@
-# climod-add-dep
+# climod-json
 
-CLI codemod to add a dependency to `package.json`.
+CLI codemod to modify JSON files.
 
 ```shell
-climod-add-dep --name react-dom[ --version 14]
+climod-json --file package.json --path license --set MIT
 ```
 
 Now your `package.json` has this entry.
 
 ```json
 {
-  "dependencies": {
-    "react-dom": "14"
-  }
+  "license": "MIT"
 }
 ```
